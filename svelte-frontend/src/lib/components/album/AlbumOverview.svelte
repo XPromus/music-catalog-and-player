@@ -3,6 +3,7 @@
     import * as AlbumAPI from "../../api/albumAPI";
     import { getRecord } from "../../api/artistAPI";
     import LoadingCircle from "../LoadingCircle.svelte";
+    import TopBar from "../TopBar.svelte";
     import AlbumCard from "./AlbumCard.svelte";
 
     async function getData() {
@@ -22,6 +23,7 @@
 </script>
 
 <div class="w-full h-full dark:bg-neutral-700">
+    <TopBar />
     <div class=" grid grid-cols-7 gap-5 p-5">
         {#await getData()}
             <LoadingCircle />

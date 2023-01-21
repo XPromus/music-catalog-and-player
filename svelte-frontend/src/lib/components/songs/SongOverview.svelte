@@ -4,6 +4,7 @@
     import { getRecord } from "../../api/artistAPI";
     import SongCard from "./SongCard.svelte";
     import LoadingCircle from "../LoadingCircle.svelte";
+    import TopBar from "../TopBar.svelte";
 
     async function getData() {
         const songs = await SongAPI.getAllSongs();
@@ -21,7 +22,8 @@
 
 </script>
 
-<div class="h-full w-full dark:bg-neutral-700">
+<div class="h-full w-full bg-neutral-700">
+    <TopBar />
     <div class=" grid grid-cols-7 gap-5 p-5">
         {#await getData()}
             <LoadingCircle />
