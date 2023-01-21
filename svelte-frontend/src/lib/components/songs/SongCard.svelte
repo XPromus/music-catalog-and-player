@@ -18,7 +18,9 @@
 
     let modal;
     const openModal = () => {
-        modal.openModal(songData.name, songData.musicVideoYouTube);
+        const videoID: string = songData.musicVideoYouTube.split("=")[1];
+        const videoURL = "https://www.youtube-nocookie.com/embed/" + videoID;
+        modal.openModal(songData.name, videoURL);
     }
 
 </script>
