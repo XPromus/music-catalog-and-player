@@ -21,6 +21,9 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>
+            <button class="text-white bg-neutral-700 hover:bg-sky-400 px-3 py-1 ml-3 transition duration-150 ease-in-out">
+                <i class="fa-solid fa-arrow-down-wide-short"></i>
+            </button>
             <button on:click={changeDisplayMode} class="text-white bg-neutral-700 hover:bg-sky-400 px-3 py-1 ml-3 transition duration-150 ease-in-out">
                 {#if displayMode}
                     <i class="fa-solid fa-bars"></i>
