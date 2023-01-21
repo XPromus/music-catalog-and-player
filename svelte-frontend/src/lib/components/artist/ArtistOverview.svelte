@@ -12,9 +12,9 @@
 
 </script>
 
-<div class="w-full h-full dark:bg-neutral-700">
+<div id="artistView" class="w-full h-full dark:bg-neutral-700">
     <TopBar />
-    <div class=" grid grid-cols-7 gap-5 p-5">
+    <div class=" grid grid-cols-7 gap-5 p-5 max-h-min">
         {#await getData()}
             <LoadingCircle />
         {:then data}
@@ -26,5 +26,9 @@
 </div>
 
 <style>
+
+    #artistView {
+        background-image: url("./assets/endless-constellation.svg");
+    }
 
 </style>
