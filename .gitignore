@@ -1,4 +1,5 @@
 #Pocketbase
+pocketbase/pb_data/storage/
 
 #Svelte Frontend
 svelte-frontend/logs
