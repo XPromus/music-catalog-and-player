@@ -11,6 +11,6 @@ export async function getRecord(id: string) {
 }
 
 export function getImageURL(record: Record): string {
-    const filename = record.cover;
+    const filename = record.coverImage;
     return pb.getFileUrl(record, filename);
 }
