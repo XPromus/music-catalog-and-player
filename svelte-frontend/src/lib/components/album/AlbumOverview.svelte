@@ -4,12 +4,7 @@
     import { getRecord } from "../../api/artistAPI";
     import AlbumCard from "./AlbumCard.svelte";
 
-    async function sleep(ms:number) {
-        return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
     async function getData() {
-        await sleep(1500);
         const albums = await AlbumAPI.getAllAlbums();
         const artists = await Promise.all(albums.map(async (album) => {
             return getRecord(album.artist).then((data) => data);
