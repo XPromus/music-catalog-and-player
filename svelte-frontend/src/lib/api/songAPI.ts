@@ -14,3 +14,8 @@ export function getImageURL(record: Record): string {
     const filename = record.coverImage;
     return pb.getFileUrl(record, filename);
 }
+
+export const updateSongData = async (id: string, data) => {
+    const record = await pb.collection("song").update(id, data);
+    return record;
+}

@@ -12,16 +12,26 @@
     export let artistData;
     let coverImageURL;
 
-    onMount(async () => {
-        coverImageURL = SongAPI.getImageURL(songData);
-    })
-
     let modal;
     const openModal = () => {
         const videoID: string = songData.musicVideoYouTube.split("=")[1];
         const videoURL = "https://www.youtube-nocookie.com/embed/" + videoID;
         modal.openModal(songData.name, videoURL);
     }
+
+    let likeSongState: boolean = false;
+    const likeSong = async () => {
+        likeSongState = !likeSongState;
+        const data = {
+            "like": likeSongState
+        }
+        await SongAPI.updateSongData(songData.id, data);
+    }
+
+    onMount(async () => {
+        coverImageURL = SongAPI.getImageURL(songData);
+        likeSongState = songData.like;
+    });
 
 </script>
 
@@ -48,8 +58,8 @@
                 </button>
             </div>
             <div class="ml-2 flex-none">
-                <button type="button" class="py-2 px-3 inline-block w-full bg-neutral-700 text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-sky-400 hover:shadow-lg active:bg-sky-700 active:shadow-lg transition duration-150 ease-in-out">
-                    <LikeIcon state="{false}"/>
+                <button on:click={likeSong} type="button" class="py-2 px-3 inline-block w-full bg-neutral-700 text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-sky-400 hover:shadow-lg active:bg-sky-700 active:shadow-lg transition duration-150 ease-in-out">
+                    <LikeIcon state="{likeSongState}"/>
                 </button>
             </div>
             <div class="ml-1 flex-none">
@@ -62,11 +72,9 @@
                     <button on:click={openModal} type="button" class="py-2 px-3 inline-block w-full bg-neutral-700 text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-red-600 hover:shadow-lg active:bg-neutral-800 active:shadow-lg transition duration-150 ease-in-out">
                         <i class="fa-brands fa-youtube"></i>
                     </button>
-
                     <Modal unstyled="{true}" classBg="z-50 fixed top-0 left-0 w-screen h-screen flex flex-col justify-center bg-gray-900/[.9]" classWindowWrap="relative m-2 max-h-full" classWindow="relative w-auto max-w-max max-h-full my-2 mx-auto rounded shadow-md bg-transparent grid place-items-center" classContent="relative p-2 overflow-hidden" closeButton="{false}">
                         <ModalContent bind:this="{modal}" />
                     </Modal>
-                    
                 {:else}
                     <!-- svelte-ignore a11y-missing-attribute -->
                     <a rel="noreferrer" class="py-2 px-3 inline-block w-full bg-neutral-800 text-neutral-700 font-medium text-xs leading-tight uppercase shadow-md">
