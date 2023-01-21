@@ -2,6 +2,7 @@
 
     import { onMount } from "svelte";
     import * as ArtistAPI from "../../api/artistAPI";
+    import EditIcon from "../icons/EditIcon.svelte";
 
     export let artistData;
     let imageURL;
@@ -23,12 +24,12 @@
                     Open
                 </button>
             </div>
-            <div class="ml-1 flex-1">
-                <button type="button" class="py-2 inline-block w-full bg-neutral-700 text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-sky-400 hover:shadow-lg active:bg-sky-700 active:shadow-lg transition duration-150 ease-in-out">
-                    Edit
+            <div class="ml-2 flex-none">
+                <button type="button" class="py-2 px-3 inline-block w-full bg-neutral-700 text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-sky-400 hover:shadow-lg active:bg-sky-700 active:shadow-lg transition duration-150 ease-in-out">
+                    <EditIcon />
                 </button>
             </div>
-            <div class="flex-none ml-2">
+            <div class="flex-none ml-1">
                 {#if artistData.artistPage !== ""}
                     <a href="{artistData.artistPage}" target="_blank" rel="noreferrer" class="py-2 px-3 inline-block w-full bg-neutral-700 text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-sky-400 hover:shadow-lg active:bg-sky-700 active:shadow-lg transition duration-150 ease-in-out">
                         <i class="fa-solid fa-arrow-up-right-from-square"></i>
@@ -39,7 +40,6 @@
                         <i class="fa-solid fa-arrow-up-right-from-square"></i>
                     </a>
                 {/if}
-                
             </div>
         </div>
     </div>

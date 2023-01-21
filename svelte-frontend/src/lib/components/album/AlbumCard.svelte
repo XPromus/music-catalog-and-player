@@ -2,6 +2,7 @@
     import { onMount } from "svelte";
 
     import * as AlbumAPI from "../../api/albumAPI";
+    import EditIcon from "../icons/EditIcon.svelte";
 
     export let albumData;
     export let artistData;
@@ -30,7 +31,7 @@
             </div>
             <div class="ml-1 flex-1">
                 <button type="button" class="py-2 inline-block w-full bg-neutral-700 text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-sky-400 hover:shadow-lg active:bg-sky-700 active:shadow-lg transition duration-150 ease-in-out">
-                    Edit
+                    <EditIcon />
                 </button>
             </div>
         </div>

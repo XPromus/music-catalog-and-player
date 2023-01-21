@@ -2,6 +2,11 @@
 
     import { onMount } from "svelte";
     import * as SongAPI from "../../api/songAPI";
+    import EditIcon from "../icons/EditIcon.svelte";
+    import LikeIcon from "../icons/LikeIcon.svelte";
+
+    import Modal from "svelte-simple-modal";
+    import ModalContent from "../ModalContent.svelte";
 
     export let songData;
     export let artistData;
@@ -10,6 +15,11 @@
     onMount(async () => {
         coverImageURL = SongAPI.getImageURL(songData);
     })
+
+    let modal;
+    const openModal = () => {
+        modal.openModal(songData.name, songData.musicVideoYouTube);
+    }
 
 </script>
 
@@ -35,16 +45,26 @@
                     Open
                 </button>
             </div>
-            <div class="ml-1 flex-1">
-                <button type="button" class="py-2 inline-block w-full bg-neutral-700 text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-sky-400 hover:shadow-lg active:bg-sky-700 active:shadow-lg transition duration-150 ease-in-out">
-                    Edit
+            <div class="ml-2 flex-none">
+                <button type="button" class="py-2 px-3 inline-block w-full bg-neutral-700 text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-sky-400 hover:shadow-lg active:bg-sky-700 active:shadow-lg transition duration-150 ease-in-out">
+                    <LikeIcon state="{false}"/>
                 </button>
             </div>
-            <div class="flex-none ml-2">
+            <div class="ml-1 flex-none">
+                <button type="button" class="py-2 px-3 inline-block w-full bg-neutral-700 text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-sky-400 hover:shadow-lg active:bg-sky-700 active:shadow-lg transition duration-150 ease-in-out">
+                    <EditIcon />
+                </button>
+            </div>
+            <div class="flex-none ml-1">
                 {#if songData.musicVideoYouTube !== ""}
-                    <a href="{songData.musicVideoYouTube}" target="_blank" rel="noreferrer" class="py-2 px-3 inline-block w-full bg-neutral-700 text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-sky-400 hover:shadow-lg active:bg-sky-700 active:shadow-lg transition duration-150 ease-in-out">
+                    <button on:click={openModal} type="button" class="py-2 px-3 inline-block w-full bg-neutral-700 text-white font-medium text-xs leading-tight uppercase shadow-md hover:bg-red-600 hover:shadow-lg active:bg-neutral-800 active:shadow-lg transition duration-150 ease-in-out">
                         <i class="fa-brands fa-youtube"></i>
-                    </a>
+                    </button>
+
+                    <Modal unstyled="{true}" classBg="z-50 fixed top-0 left-0 w-screen h-screen flex flex-col justify-center bg-gray-900/[.9]" classWindowWrap="relative m-2 max-h-full" classWindow="relative w-auto max-w-max max-h-full my-2 mx-auto rounded shadow-md bg-transparent grid place-items-center" classContent="relative p-2 overflow-hidden" closeButton="{false}">
+                        <ModalContent bind:this="{modal}" />
+                    </Modal>
+                    
                 {:else}
                     <!-- svelte-ignore a11y-missing-attribute -->
                     <a rel="noreferrer" class="py-2 px-3 inline-block w-full bg-neutral-800 text-neutral-700 font-medium text-xs leading-tight uppercase shadow-md">

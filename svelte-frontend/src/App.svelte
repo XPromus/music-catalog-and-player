@@ -13,6 +13,9 @@
     import SongCreator from "./lib/components/songs/SongCreator.svelte";
     import SongOverview from "./lib/components/songs/SongOverview.svelte";
     
+    import ModalContent from "./lib/components/ModalContent.svelte";
+    import Modal from "svelte-simple-modal";
+
     let openPageValue;
     openPage.subscribe(value => {
         openPageValue = value;
@@ -25,6 +28,9 @@
 </script>
 
 <main>
+    <Modal unstyled="{true}" classBg="z-50 fixed top-0 left-0 w-screen h-screen flex flex-col justify-center bg-gray-900/[.9]" classWindowWrap="relative m-2 max-h-full" classWindow="relative w-auto max-w-max max-h-full my-2 mx-auto rounded shadow-md bg-transparent grid place-items-center" classContent="relative p-2 overflow-hidden" closeButton="{false}">
+        <ModalContent />
+    </Modal>
     <div class="flex flex-row h-screen w-full">
         <Sidebar />
         {#if openPageValue === 0}
