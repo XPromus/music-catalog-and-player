@@ -2,6 +2,7 @@
 
     import * as AlbumAPI from "../../api/albumAPI";
     import { getRecord } from "../../api/artistAPI";
+    import LoadingCircle from "../LoadingCircle.svelte";
     import AlbumCard from "./AlbumCard.svelte";
 
     async function getData() {
@@ -23,9 +24,7 @@
 <div class="w-full h-full dark:bg-neutral-700">
     <div class=" grid grid-cols-7 gap-5 p-5">
         {#await getData()}
-            <div class="absolute right-1/2 bottom-1/2 transform translate-x-1/2 translate-y-1/2 ">
-                <div class="border-t-transparent border-solid animate-spin rounded-full border-sky-400 border-8 h-32 w-32"></div>
-            </div>
+            <LoadingCircle />
         {:then data}
             {#each data as album, i }
                 <AlbumCard artistData="{album.artist}" albumData="{album.album}"/>

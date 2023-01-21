@@ -3,6 +3,7 @@
     import * as SongAPI from "../../api/songAPI";
     import { getRecord } from "../../api/artistAPI";
     import SongCard from "./SongCard.svelte";
+    import LoadingCircle from "../LoadingCircle.svelte";
 
     async function getData() {
         const songs = await SongAPI.getAllSongs();
@@ -23,9 +24,7 @@
 <div class="h-full w-full dark:bg-neutral-700">
     <div class=" grid grid-cols-7 gap-5 p-5">
         {#await getData()}
-            <div class="absolute right-1/2 bottom-1/2 transform translate-x-1/2 translate-y-1/2 ">
-                <div class="border-t-transparent border-solid animate-spin rounded-full border-sky-400 border-8 h-32 w-32"></div>
-            </div>
+            <LoadingCircle />
         {:then data}
             {#each data as song }
                 <SongCard artistData="{song.artist}" songData="{song.song}"/>
