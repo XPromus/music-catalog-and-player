@@ -1,13 +1,36 @@
 <script lang="ts">
 
-    let colorMode: boolean = true;
+    import { pageSettings } from "../store/pageStore";
+    import type { pageSettingsInterface } from "../store/pageStore";
+    import { DisplayMode, ColorMode } from "../store/pageStore";
+
+    let colorMode: ColorMode = ColorMode.Dark;
+    let displayMode: DisplayMode = DisplayMode.Card;
+
     const changeColorMode = () => {
-        colorMode = !colorMode;
+        if (colorMode == ColorMode.Dark) {
+            colorMode = ColorMode.Light;
+        } else {
+            colorMode=  ColorMode.Dark;
+        }
+        setPageSettings();
     }
 
-    let displayMode: boolean = false;
     const changeDisplayMode = () => {
-        displayMode = !displayMode;
+        if (displayMode == DisplayMode.Card) {
+            displayMode = DisplayMode.List;
+        } else {
+            displayMode=  DisplayMode.Card;
+        }
+        setPageSettings();
+    }
+
+    const setPageSettings = () => {
+        const data: pageSettingsInterface = {
+            displayMode: displayMode,
+            colorMode: colorMode
+        };
+        pageSettings.set(data);
     }
 
 </script>

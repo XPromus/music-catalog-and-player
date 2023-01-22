@@ -1,12 +1,12 @@
 <script lang="ts">
 
     import { onMount } from "svelte";
-    import * as SongAPI from "../../api/songAPI";
-    import EditIcon from "../icons/EditIcon.svelte";
-    import LikeIcon from "../icons/LikeIcon.svelte";
+    import * as SongAPI from "../../../api/songAPI";
+    import EditIcon from "../../icons/EditIcon.svelte";
+    import LikeIcon from "../../icons/LikeIcon.svelte";
 
     import Modal from "svelte-simple-modal";
-    import ModalContent from "../ModalContent.svelte";
+    import ModalContent from "../../ModalContent.svelte";
 
     export let songData;
     export let artistData;

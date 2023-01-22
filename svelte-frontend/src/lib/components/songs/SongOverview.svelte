@@ -2,9 +2,12 @@
 
     import * as SongAPI from "../../api/songAPI";
     import { getRecord } from "../../api/artistAPI";
-    import SongCard from "./SongCard.svelte";
     import LoadingCircle from "../LoadingCircle.svelte";
     import TopBar from "../TopBar.svelte";
+
+    import { DisplayMode, pageSettings } from "../../store/pageStore";
+    import SongGrid from "./grid/SongGrid.svelte";
+    import SongList from "./list/SongList.svelte";
 
     async function getData() {
         const songs = await SongAPI.getAllSongs();
@@ -20,19 +23,24 @@
         return combinedData;
     }
 
+    let displayMode: DisplayMode;
+    pageSettings.subscribe(value =>{
+        displayMode = value.displayMode;
+    })
+
 </script>
 
 <div id="songView" class="h-full w-full bg-neutral-700">
     <TopBar />
-    <div class="grid grid-cols-7 gap-5 p-5 max-h-min">
-        {#await getData()}
+    {#await getData()}
             <LoadingCircle />
-        {:then data}
-            {#each data as song }
-                <SongCard artistData="{song.artist}" songData="{song.song}"/>
-            {/each}
-        {/await}
-    </div>
+    {:then data}
+        {#if displayMode === DisplayMode.Card}
+            <SongGrid data="{data}"/>
+        {:else if displayMode === DisplayMode.List}
+            <SongList data="{data}" />
+        {/if}
+    {/await}
 </div>
 
 <style>
