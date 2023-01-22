@@ -25,6 +25,8 @@ svelte-frontend/*.njsproj
 svelte-frontend/*.sln
 svelte-frontend/*.sw?
 
+svelte-frontend/docs
+
 #Ruby Backend
 ruby-backend/.bundle
 
