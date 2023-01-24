@@ -3,7 +3,6 @@
     import * as SongAPI from "../../api/songAPI";
     import { getRecord } from "../../api/artistAPI";
     import LoadingCircle from "../LoadingCircle.svelte";
-    import TopBar from "../TopBar.svelte";
 
     import { DisplayMode, pageSettings } from "../../store/pageStore";
     import SongGrid from "./grid/SongGrid.svelte";
@@ -30,10 +29,9 @@
 
 </script>
 
-<div id="songView" class="h-full w-full bg-neutral-700">
-    <TopBar />
+<div id="songView" class="bg-neutral-800 p-5 min-h-full">
     {#await getData()}
-            <LoadingCircle />
+        <LoadingCircle />
     {:then data}
         {#if displayMode === DisplayMode.Card}
             <SongGrid data="{data}"/>

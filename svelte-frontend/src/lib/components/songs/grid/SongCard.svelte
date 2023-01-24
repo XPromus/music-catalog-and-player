@@ -35,7 +35,7 @@
 
 </script>
 
-<div class="bg-white dark:bg-neutral-900 max-w-xs">
+<div class="bg-white dark:bg-neutral-900 max-w-xs drop-shadow-md">
     <div class="relative">
         <img class="z-30 aspect-square object-contain w-full bg-neutral-300" src="{coverImageURL}" alt=""/>
         <div class="z-40 absolute bottom-0 right-0 mb-3 mr-6">
